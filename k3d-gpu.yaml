@@ -1,0 +1,18 @@
+apiVersion: k3d.io/v1alpha2
+kind: Simple
+name: gpu-test
+servers: 1
+agents: 1
+image: k3s-gpu:v1.21.2-k3s1
+options:
+  runtime:
+    gpuRequest: all
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true
+  k3s:
+    extraServerArgs:
+      - --disable=traefik
+      - --log=/var/log/k3s.log
+      - --alsologtostderr
+
